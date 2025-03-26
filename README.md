@@ -10,6 +10,6 @@
 ✅ ***created list of tasks for main char***
 
 **Need to do**
-- prologue
-- main menu
-- ui for some tasks that need completion on pc
+- ***prologue***
+- ***main menu***
+- ***ui for some tasks that need completion on pc***
