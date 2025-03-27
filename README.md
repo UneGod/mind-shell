@@ -7,7 +7,7 @@
 **Progress**  
 ✅ ***created some basic models***  
 ✅ ***created basic layout of the house***  
-✅ ***created list of tasks for main char***
+✅ ***created list of tasks for main char***  
 ✅ ***created walls and floor collision***  
 
 **Need to do**
