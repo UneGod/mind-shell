@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmrxp0ne7w3oe"]
+
+[ext_resource type="Script" uid="uid://b646k133qmwxe" path="res://scripts/settings.gd" id="1_5p8wc"]
+
+[node name="Settings" type="Node2D"]
+script = ExtResource("1_5p8wc")
+
+[node name="Panel" type="Panel" parent="."]
+offset_right = 1154.0
+offset_bottom = 649.0
+
+[node name="Button" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 308.0
+offset_top = 262.0
+offset_right = 755.0
+offset_bottom = 348.0
+text = "back"
+
+[connection signal="pressed" from="Panel/Button" to="." method="_on_button_pressed"]

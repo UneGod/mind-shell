@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://7ixotqodkgb4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_mgfn7"]
+font_color = Color(0, 0, 0, 1)
+
+[node name="Interaction" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 4.0
+offset_right = 168.0
+offset_bottom = 64.0
+text = "Взаимодействовать"
+label_settings = SubResource("LabelSettings_mgfn7")
+horizontal_alignment = 1
+vertical_alignment = 1
