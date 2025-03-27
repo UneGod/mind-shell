@@ -12,5 +12,5 @@
 
 **Need to do**
 - ***prologue***
-- ***main menu***
+- ***better design for main menu***
 - ***ui for some tasks that need completion on pc***
