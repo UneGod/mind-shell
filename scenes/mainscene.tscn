@@ -1,0 +1,70 @@
+[gd_scene load_steps=14 format=3 uid="uid://psegjdhsdq1u"]
+
+[ext_resource type="ArrayMesh" uid="uid://h3b2gj3utujy" path="res://models/Walls_ext_rotated.obj" id="1_nshjd"]
+[ext_resource type="ArrayMesh" uid="uid://kraq6my4lynd" path="res://models/Floor_rotated.obj" id="2_hpy2g"]
+[ext_resource type="ArrayMesh" uid="uid://bfss1jcweq85e" path="res://models/Table.obj" id="3_ao358"]
+[ext_resource type="Texture2D" uid="uid://bq3bh2xcvmusk" path="res://models/textures/Monitor.png" id="3_hpy2g"]
+[ext_resource type="ArrayMesh" uid="uid://cpe5k6qsa8guu" path="res://models/Monitor.obj" id="4_bw6rn"]
+[ext_resource type="ArrayMesh" uid="uid://bhj32hno3c46m" path="res://models/Keyboard_revamped.obj" id="5_jifap"]
+[ext_resource type="PackedScene" uid="uid://c253q51jopusk" path="res://scenes/player.tscn" id="6_nshjd"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nshjd"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_hpy2g"]
+sky_material = SubResource("ProceduralSkyMaterial_nshjd")
+
+[sub_resource type="Environment" id="Environment_ao358"]
+background_mode = 2
+sky = SubResource("Sky_hpy2g")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ao358"]
+albedo_texture = ExtResource("3_hpy2g")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bw6rn"]
+albedo_texture = ExtResource("3_hpy2g")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nshjd"]
+size = Vector3(0.748993, 1, 0.85199)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ao358")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WallsExtRotated" type="MeshInstance3D" parent="."]
+mesh = ExtResource("1_nshjd")
+
+[node name="Table" type="MeshInstance3D" parent="."]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -18.1976, 0.4, -31.3208)
+mesh = ExtResource("3_ao358")
+
+[node name="Monitor" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -18.5796, 0.756702, -31.1854)
+material_override = SubResource("StandardMaterial3D_ao358")
+mesh = ExtResource("4_bw6rn")
+
+[node name="KeyboardRevamped" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0686422, 0, -0.997641, 0, 1, 0, 0.997641, 0, 0.0686422, -18.3078, 0.790928, -31.0317)
+material_override = SubResource("StandardMaterial3D_bw6rn")
+mesh = ExtResource("5_jifap")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("6_nshjd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.86484, 1.75153, -8.15558)
+
+[node name="FloorRotated" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0179091, 0.0369699, 0.0229262)
+mesh = ExtResource("2_hpy2g")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="FloorRotated"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="FloorRotated/StaticBody3D"]
+transform = Transform3D(27.7415, 0, 0, 0, 0.343555, 0, 0, 0, 44.963, -10.1206, -0.148876, -15.7596)
+shape = SubResource("BoxShape3D_nshjd")
