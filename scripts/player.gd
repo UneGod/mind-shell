@@ -6,8 +6,7 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var isInteract = false
 
-func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:

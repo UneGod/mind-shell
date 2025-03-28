@@ -1,8 +1,39 @@
-[gd_scene format=3 uid="uid://b6y4mjcunbtde"]
+[gd_scene load_steps=3 format=3 uid="uid://b6y4mjcunbtde"]
+
+[sub_resource type="GDScript" id="GDScript_d8cne"]
+script/source = "extends Node2D
+
+func _process(delta: float) -> void:
+	if Input.is_action_just_pressed(\"leaveterminal\"):
+		get_tree().change_scene_to_file(\"res://scenes/mainscene.tscn\")
+"
+
+[sub_resource type="CodeHighlighter" id="CodeHighlighter_d8cne"]
+number_color = Color(0, 1, 0, 1)
+symbol_color = Color(1, 0, 0, 1)
+function_color = Color(0.608309, 0.361313, 1, 1)
+member_variable_color = Color(0, 0, 1, 1)
 
 [node name="Gamepc" type="Node2D"]
+script = SubResource("GDScript_d8cne")
 
-[node name="Label" type="Label" parent="."]
-offset_right = 284.0
-offset_bottom = 165.0
-text = "asd))"
+[node name="PanelContainer" type="PanelContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -4.0
+offset_right = 1151.0
+offset_bottom = 647.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CodeEdit" type="CodeEdit" parent="PanelContainer"]
+layout_mode = 2
+placeholder_text = "Hello to terminal. Please enter commands"
+minimap_draw = true
+syntax_highlighter = SubResource("CodeHighlighter_d8cne")
+draw_control_chars = true
+draw_tabs = true
+draw_spaces = true
+code_completion_enabled = true

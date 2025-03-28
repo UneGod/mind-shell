@@ -1,6 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://psegjdhsdq1u"]
 
 [ext_resource type="ArrayMesh" uid="uid://h3b2gj3utujy" path="res://models/Walls_ext_rotated.obj" id="1_nshjd"]
+[ext_resource type="Script" uid="uid://b7p7rwx81p4xv" path="res://scripts/mainscene.gd" id="1_xl61e"]
 [ext_resource type="ArrayMesh" uid="uid://kraq6my4lynd" path="res://models/Floor_rotated.obj" id="2_hpy2g"]
 [ext_resource type="ArrayMesh" uid="uid://bfss1jcweq85e" path="res://models/Table.obj" id="3_ao358"]
 [ext_resource type="Texture2D" uid="uid://bq3bh2xcvmusk" path="res://models/textures/Monitor.png" id="3_hpy2g"]
@@ -10,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://c253q51jopusk" path="res://scenes/player.tscn" id="6_nshjd"]
 [ext_resource type="Script" uid="uid://clqvv4il0yv1d" path="res://scripts/interact.gd" id="9_bw6rn"]
 [ext_resource type="PackedScene" uid="uid://7ixotqodkgb4" path="res://scenes/interaction.tscn" id="10_jifap"]
-[ext_resource type="PackedScene" uid="uid://b6y4mjcunbtde" path="res://scenes/gamepc.tscn" id="11_xl61e"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nshjd"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -43,6 +43,7 @@ data = PackedVector3Array(-15.5001, 0, -0.2, -15.5001, -0.1, -0.2, -19.8, 0, -0.
 [sub_resource type="BoxShape3D" id="BoxShape3D_ao358"]
 
 [node name="Node3D" type="Node3D"]
+script = ExtResource("1_xl61e")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ao358")
@@ -102,9 +103,6 @@ shape = SubResource("BoxShape3D_ao358")
 [node name="Interaction" parent="." instance=ExtResource("10_jifap")]
 visible = false
 position = Vector2(376.429, 88.1323)
-
-[node name="Gamepc" parent="." instance=ExtResource("11_xl61e")]
-visible = false
 
 [connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
 [connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]

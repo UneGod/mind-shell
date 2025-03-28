@@ -1,7 +1,6 @@
 extends Area3D
 
 @onready var interact = $"../Interaction"
-@onready var gamepc = $"../Gamepc"
 
 var entered = false
 
@@ -14,7 +13,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if entered:
 		if Input.is_action_just_pressed("interact"):
-				gamepc.show()
+				get_tree().change_scene_to_file("res://scenes/gamepc.tscn")
 				interact.hide()
 
 
@@ -27,5 +26,4 @@ func _on_body_entered(body) -> void:
 func _on_body_exited(body) -> void:
 	if body.is_in_group("Player"):
 		entered = false
-		gamepc.hide()
 		interact.hide()
