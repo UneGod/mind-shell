@@ -2,10 +2,19 @@
 
 [ext_resource type="PackedScene" uid="uid://cqix5iwmqxpqw" path="res://models/Idle.fbx" id="1_e3hhy"]
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_pm2hd"]
+[sub_resource type="GDScript" id="GDScript_pm2hd"]
+resource_name = "asd"
+script/source = "extends Node3D
+
+@onready var anim = $AnimationPlayer
+
+func _process(delta: float) -> void:
+	anim.play(\"mixamo_com\")
+"
 
 [node name="Idle" instance=ExtResource("1_e3hhy")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+script = SubResource("GDScript_pm2hd")
 
 [node name="Skeleton3D" parent="." index="0"]
 bones/0/position = Vector3(0.00298077, 0.692064, -0.00420341)
@@ -61,7 +70,3 @@ bones/60/rotation = Quaternion(-0.0912571, -0.0253633, 0.995098, -0.0284272)
 bones/61/rotation = Quaternion(-0.0540371, 0.0827433, -0.0242875, 0.994808)
 bones/62/rotation = Quaternion(0.509926, 0.0235055, 0.00974165, 0.859842)
 bones/63/rotation = Quaternion(0.345703, 0.00868401, -0.00201994, 0.938302)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="2"]
-transform = Transform3D(0.445602, 0, 0, 0, 0.713546, 0, 0, 0, 1, 0, 0.705012, 0)
-shape = SubResource("CylinderShape3D_pm2hd")
