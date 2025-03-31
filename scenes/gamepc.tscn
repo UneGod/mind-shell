@@ -1,39 +1,81 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6y4mjcunbtde"]
+[gd_scene load_steps=3 format=3 uid="uid://ckdqo5g5ulefm"]
 
-[sub_resource type="GDScript" id="GDScript_d8cne"]
-script/source = "extends Node2D
+[ext_resource type="Script" uid="uid://cng8lvqbyfhfn" path="res://scripts/gamepc.gd" id="1_6eg85"]
 
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed(\"leaveterminal\"):
-		get_tree().change_scene_to_file(\"res://scenes/mainscene.tscn\")
-"
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6eg85"]
 
-[sub_resource type="CodeHighlighter" id="CodeHighlighter_d8cne"]
-number_color = Color(0, 1, 0, 1)
-symbol_color = Color(1, 0, 0, 1)
-function_color = Color(0.608309, 0.361313, 1, 1)
-member_variable_color = Color(0, 0, 1, 1)
+[node name="Gamepc" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6eg85")
 
-[node name="Gamepc" type="Node2D"]
-script = SubResource("GDScript_d8cne")
+[node name="GridContainer" type="GridContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+columns = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="."]
+[node name="Panel4" type="Panel" parent="GridContainer"]
+layout_mode = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="GridContainer/Panel4"]
+layout_mode = 0
+offset_right = 1627.0
+offset_bottom = 857.0
+
+[node name="Panel" type="Panel" parent="GridContainer"]
+layout_mode = 2
+
+[node name="CodeEdit" type="CodeEdit" parent="GridContainer/Panel"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -4.0
-offset_top = -4.0
-offset_right = 1151.0
-offset_bottom = 647.0
+offset_right = 815.0
+offset_bottom = 646.0
 grow_horizontal = 2
 grow_vertical = 2
+placeholder_text = "Welcome to terminal. Please enter command and then click the button"
 
-[node name="CodeEdit" type="CodeEdit" parent="PanelContainer"]
+[node name="Panel2" type="Panel" parent="GridContainer"]
 layout_mode = 2
-placeholder_text = "Hello to terminal. Please enter commands"
-minimap_draw = true
-syntax_highlighter = SubResource("CodeHighlighter_d8cne")
-draw_control_chars = true
-draw_tabs = true
-draw_spaces = true
-code_completion_enabled = true
+
+[node name="Button" type="Button" parent="GridContainer/Panel2"]
+layout_mode = 0
+offset_left = 834.0
+offset_top = 13.0
+offset_right = 997.0
+offset_bottom = 75.0
+text = "Complete command"
+
+[node name="Panel3" type="Panel" parent="GridContainer"]
+visibility_layer = 2
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GridContainer/Panel3"]
+modulate = Color(0, 0.762011, 0.76201, 1)
+material = SubResource("CanvasItemMaterial_6eg85")
+layout_mode = 0
+offset_left = 841.0
+offset_top = 169.0
+offset_right = 1129.0
+offset_bottom = 628.0
+text = "gjnkghjlkhl"
+
+[node name="Label2" type="Label" parent="GridContainer/Panel3"]
+layout_mode = 0
+offset_left = 840.0
+offset_top = 112.0
+offset_right = 1036.0
+offset_bottom = 135.0
+text = "Output:"

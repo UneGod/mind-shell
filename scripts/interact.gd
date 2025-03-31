@@ -1,6 +1,8 @@
 extends Area3D
 
 @onready var interact = $"../Interaction"
+@onready var player = $"../CharacterBody3D"
+@onready var gamepc = $"../Gamepc"
 
 var entered = false
 
@@ -13,8 +15,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if entered:
 		if Input.is_action_just_pressed("interact"):
-				get_tree().change_scene_to_file("res://scenes/gamepc.tscn")
-				interact.hide()
+			gamepc.show()
+			player.set_meta("ingame", true)
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			interact.hide()
 
 
 func _on_body_entered(body) -> void:
