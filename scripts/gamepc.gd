@@ -24,10 +24,11 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("leaveterminal"):
-		gamepc.hide()
-		inter.show()
-		player.set_meta("ingame", false)
-		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		if player.get_meta("ingame", true):
+			gamepc.hide()
+			inter.show()
+			player.set_meta("ingame", false)
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
 func _on_complete_pressed() -> void:
