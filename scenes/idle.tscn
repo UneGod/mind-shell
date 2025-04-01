@@ -8,7 +8,7 @@ script/source = "extends Node3D
 
 @onready var anim = $AnimationPlayer
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	anim.play(\"mixamo_com\")
 "
 
