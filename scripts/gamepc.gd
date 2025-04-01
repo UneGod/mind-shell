@@ -22,7 +22,7 @@ func _ready() -> void:
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("leaveterminal"):
 		if player.get_meta("ingame", true):
 			gamepc.hide()
@@ -76,7 +76,7 @@ func _on_complete_pressed() -> void:
 		output.text = cur_dir
 	elif "nmap " in cur_command:
 		var regex = RegEx.new()
-		var ip = regex.compile("^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$")
+		var _ip = regex.compile("^((25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$")
 		if regex.search(cur_command.substr(5, cur_command.length())):
 			output.text = "Scanning " + cur_command.substr(5, cur_command.length()) + "..." + "\n"
 			await get_tree().create_timer(2.0).timeout
