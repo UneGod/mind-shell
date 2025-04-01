@@ -89,6 +89,7 @@ func _on_complete_pressed() -> void:
 				output.text = "Connection lost..."
 		else:
 			output.text = "No script to load"
+	code.text = ""
 
 
 func _on_complete_2_pressed() -> void:

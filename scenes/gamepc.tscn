@@ -66,6 +66,7 @@ offset_bottom = 346.0
 text = "Complete command"
 
 [node name="Complete2" type="Button" parent="GridContainer/Panel2"]
+layout_mode = 0
 offset_left = 1497.0
 offset_top = 278.0
 offset_right = 1719.0
@@ -115,5 +116,5 @@ offset_bottom = 75.0
 text = "Current folder:"
 
 [connection signal="pressed" from="GridContainer/Panel2/Complete" to="." method="_on_complete_pressed"]
-[connection signal="pressed" from="GridContainer/Panel2/Complete2" to="." method="_on_complete_2_pressed"]
 [connection signal="pressed" from="GridContainer/Panel2/Complete2" to="." method="_on_complete_pressed"]
+[connection signal="pressed" from="GridContainer/Panel2/Complete2" to="." method="_on_complete_2_pressed"]
