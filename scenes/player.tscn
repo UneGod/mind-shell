@@ -1,14 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://c253q51jopusk"]
+[gd_scene load_steps=3 format=3 uid="uid://c253q51jopusk"]
 
-[ext_resource type="PackedScene" uid="uid://dqdyb0d3n02rc" path="res://scenes/idle.tscn" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://hxy7hwrrypco" path="res://scripts/player.gd" id="1_g2els"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_g2els"]
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 script = ExtResource("1_g2els")
-
-[node name="Idle" parent="." instance=ExtResource("1_3vyb7")]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.301728, 0, 0, 0, 0.751255, 0, 0, 0, 0.623437, 0, 0.749105, 0)
