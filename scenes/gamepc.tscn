@@ -1,8 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://ckdqo5g5ulefm"]
+[gd_scene load_steps=6 format=3 uid="uid://ckdqo5g5ulefm"]
 
 [ext_resource type="Script" uid="uid://cng8lvqbyfhfn" path="res://scripts/gamepc.gd" id="1_6eg85"]
 
+[sub_resource type="CodeHighlighter" id="CodeHighlighter_6eg85"]
+number_color = Color(3.54964e-07, 0.355938, 4.33177e-07, 1)
+
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6eg85"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6eg85"]
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_7j31j"]
+font_size = 24
 
 [node name="Gamepc" type="Control"]
 layout_mode = 3
@@ -18,6 +27,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_right = 3.0
+offset_bottom = 7.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/h_separation = 6
@@ -29,53 +40,71 @@ layout_mode = 2
 
 [node name="PanelContainer" type="PanelContainer" parent="GridContainer/Panel4"]
 layout_mode = 0
-offset_right = 1627.0
-offset_bottom = 857.0
+offset_right = 2383.0
+offset_bottom = 1323.0
 
 [node name="Panel" type="Panel" parent="GridContainer"]
 layout_mode = 2
 
-[node name="CodeEdit" type="CodeEdit" parent="GridContainer/Panel"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="TextEdit" type="TextEdit" parent="GridContainer/Panel"]
+layout_mode = 0
 offset_left = -4.0
-offset_right = 815.0
-offset_bottom = 646.0
-grow_horizontal = 2
-grow_vertical = 2
-placeholder_text = "Welcome to terminal. Please enter command and then click the button"
+offset_right = 1230.0
+offset_bottom = 1080.0
+placeholder_text = "Enter command"
+syntax_highlighter = SubResource("CodeHighlighter_6eg85")
 
 [node name="Panel2" type="Panel" parent="GridContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="GridContainer/Panel2"]
+[node name="Complete" type="Button" parent="GridContainer/Panel2"]
 layout_mode = 0
-offset_left = 834.0
-offset_top = 13.0
-offset_right = 997.0
-offset_bottom = 75.0
+offset_left = 1262.0
+offset_top = 279.0
+offset_right = 1484.0
+offset_bottom = 346.0
 text = "Complete command"
 
 [node name="Panel3" type="Panel" parent="GridContainer"]
 visibility_layer = 2
 layout_mode = 2
 
-[node name="Label" type="Label" parent="GridContainer/Panel3"]
+[node name="Output" type="Label" parent="GridContainer/Panel3"]
 modulate = Color(0, 0.762011, 0.76201, 1)
 material = SubResource("CanvasItemMaterial_6eg85")
 layout_mode = 0
-offset_left = 841.0
-offset_top = 169.0
-offset_right = 1129.0
-offset_bottom = 628.0
-text = "gjnkghjlkhl"
+offset_left = 1252.0
+offset_top = 483.0
+offset_right = 1909.0
+offset_bottom = 1073.0
+label_settings = SubResource("LabelSettings_6eg85")
 
 [node name="Label2" type="Label" parent="GridContainer/Panel3"]
 layout_mode = 0
-offset_left = 840.0
-offset_top = 112.0
-offset_right = 1036.0
-offset_bottom = 135.0
+offset_left = 1257.0
+offset_top = 406.0
+offset_right = 1453.0
+offset_bottom = 440.0
 text = "Output:"
+label_settings = SubResource("LabelSettings_7j31j")
+
+[node name="Panel5" type="Panel" parent="GridContainer"]
+layout_mode = 2
+
+[node name="cur_folder" type="Label" parent="GridContainer/Panel5"]
+layout_mode = 0
+offset_left = 1250.0
+offset_top = 102.0
+offset_right = 1487.0
+offset_bottom = 147.0
+text = "~"
+
+[node name="Label2" type="Label" parent="GridContainer/Panel5"]
+layout_mode = 0
+offset_left = 1265.0
+offset_top = 37.0
+offset_right = 1451.0
+offset_bottom = 75.0
+text = "Current folder:"
+
+[connection signal="pressed" from="GridContainer/Panel2/Complete" to="." method="_on_complete_pressed"]
