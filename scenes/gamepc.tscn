@@ -65,6 +65,13 @@ offset_right = 1484.0
 offset_bottom = 346.0
 text = "Complete command"
 
+[node name="Complete2" type="Button" parent="GridContainer/Panel2"]
+offset_left = 1497.0
+offset_top = 278.0
+offset_right = 1719.0
+offset_bottom = 345.0
+text = "Leave"
+
 [node name="Panel3" type="Panel" parent="GridContainer"]
 visibility_layer = 2
 layout_mode = 2
@@ -108,3 +115,5 @@ offset_bottom = 75.0
 text = "Current folder:"
 
 [connection signal="pressed" from="GridContainer/Panel2/Complete" to="." method="_on_complete_pressed"]
+[connection signal="pressed" from="GridContainer/Panel2/Complete2" to="." method="_on_complete_2_pressed"]
+[connection signal="pressed" from="GridContainer/Panel2/Complete2" to="." method="_on_complete_pressed"]

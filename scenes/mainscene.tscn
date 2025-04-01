@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://psegjdhsdq1u"]
+[gd_scene load_steps=30 format=3 uid="uid://psegjdhsdq1u"]
 
 [ext_resource type="ArrayMesh" uid="uid://h3b2gj3utujy" path="res://models/Walls_ext_rotated.obj" id="1_nshjd"]
 [ext_resource type="Script" uid="uid://b7p7rwx81p4xv" path="res://scripts/mainscene.gd" id="1_xl61e"]
@@ -10,10 +10,10 @@
 [ext_resource type="ArrayMesh" uid="uid://bhj32hno3c46m" path="res://models/Keyboard_revamped.obj" id="5_jifap"]
 [ext_resource type="PackedScene" uid="uid://c253q51jopusk" path="res://scenes/player.tscn" id="6_nshjd"]
 [ext_resource type="Script" uid="uid://clqvv4il0yv1d" path="res://scripts/interact.gd" id="9_bw6rn"]
-[ext_resource type="PackedScene" uid="uid://7ixotqodkgb4" path="res://scenes/interaction.tscn" id="10_jifap"]
 [ext_resource type="PackedScene" uid="uid://ckdqo5g5ulefm" path="res://scenes/gamepc.tscn" id="12_0o2or"]
 [ext_resource type="ArrayMesh" uid="uid://copsv2qe5jaun" path="res://models/IP_sticker.obj" id="13_l58e3"]
 [ext_resource type="Texture2D" uid="uid://bfcfrgyw3p567" path="res://models/textures/IP_sticker.png" id="14_hvbcb"]
+[ext_resource type="PackedScene" uid="uid://b0153fepnojmf" path="res://scenes/gamewireshark.tscn" id="14_l58e3"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nshjd"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -48,10 +48,51 @@ data = PackedVector3Array(-15.5001, 0, -0.2, -15.5001, -0.1, -0.2, -19.8, 0, -0.
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_owwh3"]
 albedo_texture = ExtResource("14_hvbcb")
 
-[sub_resource type="BoxMesh" id="BoxMesh_l58e3"]
+[sub_resource type="SphereMesh" id="SphereMesh_457mv"]
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hvbcb"]
-points = PackedVector3Array(0.5, 0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_457mv"]
+albedo_color = Color(4.81307e-07, 0.467412, 1.15514e-06, 1)
+
+[sub_resource type="GDScript" id="GDScript_457mv"]
+script/source = "extends Area3D
+
+@onready var interact = $\"../Interaction/gamepcinter2\"
+@onready var player = $\"../CharacterBody3D\"
+@onready var gamepc = $\"../Gamewireshark\"
+
+var entered = false
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	if entered:
+		if Input.is_action_just_pressed(\"interact\"):
+			gamepc.show()
+			player.set_meta(\"ingame\", true)
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			interact.hide()
+
+
+func _on_body_entered(body) -> void:
+	if body.is_in_group(\"Player\"):
+		entered = true
+		interact.show()
+
+func _on_body_exited(body) -> void:
+	if body.is_in_group(\"Player\"):
+		entered = false
+		interact.hide()
+"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l58e3"]
+albedo_color = Color(3.36915e-07, 0.350616, 0.350616, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hvbcb"]
+material = SubResource("StandardMaterial3D_l58e3")
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_xl61e")
@@ -104,17 +145,13 @@ mesh = ExtResource("2_hpy2g")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="FloorRotated/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_ao358")
 
-[node name="Area3D" type="Area3D" parent="."]
+[node name="gamepctrig" type="Area3D" parent="."]
 transform = Transform3D(1.70913, 0, 0, 0, 1, 0, 0, 0, 1.16709, -18.879, 0.294157, -30.1061)
 script = ExtResource("9_bw6rn")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="gamepctrig"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.377809, -0.304416, -0.196001)
 shape = SubResource("BoxShape3D_ao358")
-
-[node name="Interaction" parent="." instance=ExtResource("10_jifap")]
-visible = false
-position = Vector2(376.429, 88.1323)
 
 [node name="Gamepc" parent="." instance=ExtResource("12_0o2or")]
 visible = false
@@ -124,13 +161,37 @@ transform = Transform3D(-0.163085, -7.12867e-09, 0.986612, -0.986612, -4.31262e-
 mesh = ExtResource("13_l58e3")
 surface_material_override/0 = SubResource("StandardMaterial3D_owwh3")
 
+[node name="Interaction" type="Node3D" parent="."]
+
+[node name="gamepcinter" type="MeshInstance3D" parent="Interaction"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -17.9723, 1.3661, -31.3122)
+visible = false
+mesh = SubResource("SphereMesh_457mv")
+surface_material_override/0 = SubResource("StandardMaterial3D_457mv")
+
+[node name="gamepcinter2" type="MeshInstance3D" parent="Interaction"]
+transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, -2.64424, 1.4127, -14.7937)
+visible = false
+mesh = SubResource("SphereMesh_457mv")
+skeleton = NodePath("../gamepcinter")
+surface_material_override/0 = SubResource("StandardMaterial3D_457mv")
+
+[node name="gamewiretrig2" type="Area3D" parent="."]
+transform = Transform3D(3.23637, 0, 0, 0, 1, 0, 0, 0, 2.23466, -4.44843, 0.464231, -13.8233)
+script = SubResource("GDScript_457mv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="gamewiretrig2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.377809, -0.304416, -0.196001)
+shape = SubResource("BoxShape3D_ao358")
+
+[node name="Gamewireshark" parent="." instance=ExtResource("14_l58e3")]
+visible = false
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1937, 0.498833, -19)
-mesh = SubResource("BoxMesh_l58e3")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.10365, -3.37308, 1.22514, -15.3345)
+mesh = SubResource("BoxMesh_hvbcb")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.1937, 0.498833, -19)
-shape = SubResource("ConvexPolygonShape3D_hvbcb")
-
-[connection signal="body_entered" from="Area3D" to="Area3D" method="_on_body_entered"]
-[connection signal="body_exited" from="Area3D" to="Area3D" method="_on_body_exited"]
+[connection signal="body_entered" from="gamepctrig" to="gamepctrig" method="_on_body_entered"]
+[connection signal="body_exited" from="gamepctrig" to="gamepctrig" method="_on_body_exited"]
+[connection signal="body_entered" from="gamewiretrig2" to="gamewiretrig2" method="_on_body_entered"]
+[connection signal="body_exited" from="gamewiretrig2" to="gamewiretrig2" method="_on_body_exited"]

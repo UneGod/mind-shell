@@ -1,0 +1,65 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0153fepnojmf"]
+
+[ext_resource type="Script" uid="uid://dktjyyga24jbi" path="res://scripts/wirescript.gd" id="1_tgj8i"]
+
+[node name="Gamewireshark" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tgj8i")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_constants/separation = 14
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "start"
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "stop"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+
+[node name="Button3" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Leave WireShark"
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 1000)
+layout_mode = 2
+split_offset = 700
+
+[node name="Packets" type="Tree" parent="VBoxContainer/HSplitContainer"]
+custom_minimum_size = Vector2(900, 0)
+layout_mode = 2
+columns = 6
+column_titles_visible = true
+
+[node name="Tree2" type="Tree" parent="VBoxContainer/HSplitContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button3" to="." method="_on_button_3_pressed"]

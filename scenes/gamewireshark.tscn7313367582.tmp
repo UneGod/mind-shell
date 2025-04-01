@@ -1,0 +1,124 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0153fepnojmf"]
+
+[sub_resource type="GDScript" id="GDScript_6e4d3"]
+script/source = "extends Control
+
+@onready var packet_list = $VBoxContainer/HSplitContainer/Packets
+
+var started = false
+var clickedbefore = false
+var k = -1
+
+func _ready():
+	
+	# Задаём названия колонок
+	packet_list.set_column_title(0, \"№\")
+	packet_list.set_column_title(1, \"Time\")
+	packet_list.set_column_title(2, \"Source\")
+	packet_list.set_column_title(3, \"Destination\")
+	packet_list.set_column_title(4, \"Protocol\")
+	
+	# Опционально: настраиваем ширину
+	packet_list.set_column_expand(0, false)
+	packet_list.set_column_expand(1, false)
+	packet_list.set_column_expand(5, false)
+
+func generate_random_string(length: int) -> String:
+	var chars = \"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789\"
+	var random = RandomNumberGenerator.new()
+	random.randomize()  # Важно: инициализация генератора
+	var result = \"\"
+	for i in range(length):
+		result += chars[random.randi() % chars.length()]
+	return result
+	
+	
+func update_packet_list(packet_data):
+	var root = packet_list.create_item()
+	var time = root.create_child()
+	time.set_text(0, str(Time.get_ticks_msec()))
+	
+	var src_ip = root.create_child()
+	src_ip.set_text(0, \"192.168.1.1\")  # Замените на реальный IP
+	
+	var protocol = root.create_child()
+	protocol.set_text(0, \"TCP\" if len(packet_data) > 20 else \"UDP\")
+
+
+func _on_button_pressed() -> void:
+	started = true
+	while true:
+		if started:
+			k += 1
+			await get_tree().create_timer(2.0).timeout
+			var packet = generate_random_string(16)
+			var root = packet_list.create_item()
+			var time = Time.get_time_string_from_system()
+			root.set_text(0, str(k))
+			root.set_text(1, time)
+			root.set_text(2, \"192.168.1.1\")  # Заглушка (реальный IP из парсинга)
+			root.set_text(3, \"8.8.8.8\")      # Заглушка
+			root.set_text(4, \"TCP\")           # Определяем по данным пакета
+			root.set_text(5, \"16\")
+		else:
+			break
+		
+
+func _on_button_2_pressed() -> void:
+	started = false
+"
+
+[node name="Gamewireshark" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_6e4d3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "start"
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "stop"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 1000)
+layout_mode = 2
+split_offset = 700
+
+[node name="Packets" type="Tree" parent="VBoxContainer/HSplitContainer"]
+layout_mode = 2
+columns = 6
+column_titles_visible = true
+
+[node name="Tree2" type="Tree" parent="VBoxContainer/HSplitContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]

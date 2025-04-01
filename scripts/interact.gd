@@ -1,6 +1,6 @@
 extends Area3D
 
-@onready var interact = $"../Interaction"
+@onready var interact = $"../Interaction/gamepcinter"
 @onready var player = $"../CharacterBody3D"
 @onready var gamepc = $"../Gamepc"
 
@@ -25,7 +25,6 @@ func _on_body_entered(body) -> void:
 	if body.is_in_group("Player"):
 		entered = true
 		interact.show()
-
 
 func _on_body_exited(body) -> void:
 	if body.is_in_group("Player"):

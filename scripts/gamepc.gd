@@ -1,7 +1,7 @@
 extends Control
 
 @onready var player = $"../CharacterBody3D"
-@onready var inter = $"../Interaction"
+@onready var inter = $"../Interaction/gamepcinter"
 @onready var gamepc = $"."
 @onready var output = $GridContainer/Panel3/Output
 @onready var code = $GridContainer/Panel/TextEdit
@@ -19,16 +19,6 @@ var open_port = 443
 func _ready() -> void:
 	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 	code.add_theme_font_size_override("font_size", 30)
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("leaveterminal"):
-		if player.get_meta("ingame", true):
-			gamepc.hide()
-			inter.show()
-			player.set_meta("ingame", false)
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 
 func _on_complete_pressed() -> void:
@@ -99,3 +89,10 @@ func _on_complete_pressed() -> void:
 				output.text = "Connection lost..."
 		else:
 			output.text = "No script to load"
+
+
+func _on_complete_2_pressed() -> void:
+	gamepc.hide()
+	inter.show()
+	player.set_meta("ingame", false)
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

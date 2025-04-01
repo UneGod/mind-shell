@@ -1,0 +1,92 @@
+[gd_scene load_steps=2 format=3 uid="uid://b0153fepnojmf"]
+
+[sub_resource type="GDScript" id="GDScript_6e4d3"]
+script/source = "extends Control
+
+@onready var packet_list = $VBoxContainer/HSplitContainer/Packets
+
+var udp := PacketPeerUDP.new()
+var packets := []
+
+func _ready():
+	
+	# Задаём названия колонок
+	packet_list.set_column_title(0, \"№\")
+	packet_list.set_column_title(1, \"Time\")
+	packet_list.set_column_title(2, \"Source\")
+	packet_list.set_column_title(3, \"Destination\")
+	packet_list.set_column_title(4, \"Protocol\")
+	udp.listen(5555)
+	
+	# Опционально: настраиваем ширину
+	packet_list.set_column_expand(0, false)  # Не растягивать
+
+func _process(_delta):
+	while udp.get_available_packet_count() > 0:
+		var packet = udp.get_packet()
+		packets.append(packet)
+		update_packet_list(packet)
+
+func update_packet_list(packet_data: PackedByteArray):
+	var root = packet_list.create_item()
+	var time = root.create_child()
+	time.set_text(0, str(Time.get_ticks_msec()))
+	
+	var src_ip = root.create_child()
+	src_ip.set_text(0, \"192.168.1.1\")  # Замените на реальный IP
+	
+	var protocol = root.create_child()
+	protocol.set_text(0, \"TCP\" if len(packet_data) > 20 else \"UDP\")
+"
+
+[node name="Gamewireshark" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_6e4d3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 5
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "start"
+
+[node name="Button2" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "stop"
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 2
+
+[node name="HSplitContainer" type="HSplitContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 1000)
+layout_mode = 2
+split_offset = 700
+
+[node name="Packets" type="Tree" parent="VBoxContainer/HSplitContainer"]
+layout_mode = 2
+columns = 5
+column_titles_visible = true
+
+[node name="Tree2" type="Tree" parent="VBoxContainer/HSplitContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
