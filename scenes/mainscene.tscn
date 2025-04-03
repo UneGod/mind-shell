@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://psegjdhsdq1u"]
+[gd_scene load_steps=33 format=3 uid="uid://psegjdhsdq1u"]
 
 [ext_resource type="ArrayMesh" uid="uid://h3b2gj3utujy" path="res://models/Walls_ext_rotated.obj" id="1_nshjd"]
 [ext_resource type="Script" uid="uid://b7p7rwx81p4xv" path="res://scripts/mainscene.gd" id="1_xl61e"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://di48mjb8djy7k" path="res://models/textures/IP_sticker_remastur.png" id="14_lj14v"]
 [ext_resource type="PackedScene" uid="uid://ctpq5xj82v1es" path="res://scenes/menu.tscn" id="16_owwh3"]
 [ext_resource type="Script" uid="uid://bq5yvuj1addc5" path="res://scripts/menuscript.gd" id="17_lj14v"]
+[ext_resource type="ArrayMesh" uid="uid://brsm34vbrvli5" path="res://models/Server_display.obj" id="18_4amiu"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nshjd"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -93,12 +94,6 @@ func _on_body_exited(body) -> void:
 		entered = false
 		interact.hide()
 "
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l58e3"]
-albedo_color = Color(3.36915e-07, 0.350616, 0.350616, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_hvbcb"]
-material = SubResource("StandardMaterial3D_l58e3")
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_xl61e")
@@ -194,13 +189,13 @@ shape = SubResource("BoxShape3D_ao358")
 [node name="Gamewireshark" parent="." instance=ExtResource("14_l58e3")]
 visible = false
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.10365, -3.37308, 1.22514, -15.3345)
-mesh = SubResource("BoxMesh_hvbcb")
-
 [node name="Menu" parent="." instance=ExtResource("16_owwh3")]
 visible = false
 script = ExtResource("17_lj14v")
+
+[node name="ServerDisplay" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3764, 1.5218, -15.3703)
+mesh = ExtResource("18_4amiu")
 
 [connection signal="body_entered" from="gamepctrig" to="gamepctrig" method="_on_body_entered"]
 [connection signal="body_exited" from="gamepctrig" to="gamepctrig" method="_on_body_exited"]
