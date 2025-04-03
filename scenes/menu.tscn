@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://ctpq5xj82v1es"]
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -100.0
+offset_right = 200.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Button" type="Button" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Вернуться в игру"
+
+[node name="Button2" type="Button" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+size_flags_vertical = 4
+text = "Сохранить игру"
+
+[node name="Button3" type="Button" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Настройки"
+
+[node name="Button4" type="Button" parent="Panel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+text = "Выйти в главное меню"
+
+[node name="Button5" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+text = "load"
+
+[connection signal="pressed" from="Panel/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Button5" to="." method="_on_button_5_pressed"]

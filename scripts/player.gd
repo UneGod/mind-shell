@@ -6,7 +6,19 @@ const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
 var isInteract = false
 
+func _ready() -> void:
+	self.set_meta("ingame", false)
 
+func save():
+	var save_dict = {
+		"filename" : get_scene_file_path(),
+		"parent" : get_parent().get_path(),
+		"pos_x": position.x,
+		"pos_y": position.y,
+		"pos_z": position.z,
+		"ingame": get_meta("ingame")
+	}
+	return save_dict
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:

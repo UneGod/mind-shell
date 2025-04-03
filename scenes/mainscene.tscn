@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://psegjdhsdq1u"]
+[gd_scene load_steps=34 format=3 uid="uid://psegjdhsdq1u"]
 
 [ext_resource type="ArrayMesh" uid="uid://h3b2gj3utujy" path="res://models/Walls_ext_rotated.obj" id="1_nshjd"]
 [ext_resource type="Script" uid="uid://b7p7rwx81p4xv" path="res://scripts/mainscene.gd" id="1_xl61e"]
@@ -15,6 +15,8 @@
 [ext_resource type="ArrayMesh" uid="uid://copsv2qe5jaun" path="res://models/IP_sticker.obj" id="13_l58e3"]
 [ext_resource type="PackedScene" uid="uid://b0153fepnojmf" path="res://scenes/gamewireshark.tscn" id="14_l58e3"]
 [ext_resource type="Texture2D" uid="uid://di48mjb8djy7k" path="res://models/textures/IP_sticker_remastur.png" id="14_lj14v"]
+[ext_resource type="PackedScene" uid="uid://ctpq5xj82v1es" path="res://scenes/menu.tscn" id="16_owwh3"]
+[ext_resource type="Script" uid="uid://bq5yvuj1addc5" path="res://scripts/menuscript.gd" id="17_lj14v"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nshjd"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -138,7 +140,7 @@ transform = Transform3D(0.0686422, 0, -0.997641, 0, 1, 0, 0.997641, 0, 0.0686422
 material_override = SubResource("StandardMaterial3D_bw6rn")
 mesh = ExtResource("5_jifap")
 
-[node name="CharacterBody3D" parent="." groups=["Player"] instance=ExtResource("6_nshjd")]
+[node name="CharacterBody3D" parent="." groups=["Persist", "Player"] instance=ExtResource("6_nshjd")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.37265, 0.853797, -18.5449)
 metadata/ingame = false
 
@@ -195,6 +197,10 @@ visible = false
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.10365, -3.37308, 1.22514, -15.3345)
 mesh = SubResource("BoxMesh_hvbcb")
+
+[node name="Menu" parent="." instance=ExtResource("16_owwh3")]
+visible = false
+script = ExtResource("17_lj14v")
 
 [connection signal="body_entered" from="gamepctrig" to="gamepctrig" method="_on_body_entered"]
 [connection signal="body_exited" from="gamepctrig" to="gamepctrig" method="_on_body_exited"]
