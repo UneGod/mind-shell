@@ -15,5 +15,6 @@ func _process(_delta) -> void:
 	if Input.is_action_just_pressed("leavegame"):
 		get_tree().quit()
 	if Input.is_action_just_pressed("menu"):
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-		menu.show()
+		if !pl.get_meta("ingame"):
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			menu.show()
