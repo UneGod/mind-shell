@@ -37,12 +37,6 @@ layout_mode = 2
 size_flags_vertical = 4
 text = "Вернуться в игру"
 
-[node name="Button2" type="Button" parent="Panel/VBoxContainer"]
-custom_minimum_size = Vector2(100, 30)
-layout_mode = 2
-size_flags_vertical = 4
-text = "Сохранить игру"
-
 [node name="Button3" type="Button" parent="Panel/VBoxContainer"]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
@@ -53,10 +47,4 @@ custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 text = "Выйти в главное меню"
 
-[node name="Button5" type="Button" parent="Panel/VBoxContainer"]
-layout_mode = 2
-text = "load"
-
 [connection signal="pressed" from="Panel/VBoxContainer/Button" to="." method="_on_button_pressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/Button2" to="." method="_on_button_2_pressed"]
-[connection signal="pressed" from="Panel/VBoxContainer/Button5" to="." method="_on_button_5_pressed"]

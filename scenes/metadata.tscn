@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3 uid="uid://djs7gd4fbtodo"]
+
+[ext_resource type="Texture2D" uid="uid://soby0bmiwgv" path="res://assets/369f717f_740d_4332_b823_336fa9d28ea0.jpg" id="1_ii0ra"]
+[ext_resource type="Script" uid="uid://c1g7ka0cligs2" path="res://scripts/metadata.gd" id="1_m3n57"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_m3n57")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.180005, 0.180005, 0.180005, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(990, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 1000)
+layout_mode = 2
+texture = ExtResource("1_ii0ra")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "Analyze metadata"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(960, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(800, 1000)
+layout_mode = 2
+theme_override_font_sizes/font_size = 30
+
+[node name="picyatdva" type="Button" parent="HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_font_sizes/font_size = 38
+text = "Exit"
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/picyatdva" to="." method="_on_picyatdva_pressed"]

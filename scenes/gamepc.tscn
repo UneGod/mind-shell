@@ -51,7 +51,7 @@ layout_mode = 0
 offset_left = -4.0
 offset_right = 1230.0
 offset_bottom = 1080.0
-placeholder_text = "Enter command"
+placeholder_text = "Enter password"
 syntax_highlighter = SubResource("CodeHighlighter_6eg85")
 
 [node name="Panel2" type="Panel" parent="GridContainer"]
@@ -116,5 +116,5 @@ offset_bottom = 75.0
 text = "Current folder:"
 
 [connection signal="pressed" from="GridContainer/Panel2/Complete" to="." method="_on_complete_pressed"]
-[connection signal="pressed" from="GridContainer/Panel2/Complete2" to="." method="_on_complete_pressed"]
 [connection signal="pressed" from="GridContainer/Panel2/Complete2" to="." method="_on_complete_2_pressed"]
+[connection signal="pressed" from="GridContainer/Panel2/Complete2" to="." method="_on_complete_pressed"]

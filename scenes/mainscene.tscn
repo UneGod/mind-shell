@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://psegjdhsdq1u"]
+[gd_scene load_steps=37 format=3 uid="uid://psegjdhsdq1u"]
 
 [ext_resource type="ArrayMesh" uid="uid://h3b2gj3utujy" path="res://models/Walls_ext_rotated.obj" id="1_nshjd"]
 [ext_resource type="Script" uid="uid://b7p7rwx81p4xv" path="res://scripts/mainscene.gd" id="1_xl61e"]
@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://bq5yvuj1addc5" path="res://scripts/menuscript.gd" id="17_lj14v"]
 [ext_resource type="ArrayMesh" uid="uid://brsm34vbrvli5" path="res://models/Server_display.obj" id="18_4amiu"]
 [ext_resource type="Texture2D" uid="uid://dy610vdl2kyec" path="res://models/textures/Server_screen_remastur.png" id="19_rt53s"]
+[ext_resource type="PackedScene" uid="uid://djs7gd4fbtodo" path="res://scenes/metadata.tscn" id="20_w0i17"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nshjd"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -98,6 +99,41 @@ func _on_body_exited(body) -> void:
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w0i17"]
 albedo_texture = ExtResource("19_rt53s")
+
+[sub_resource type="GDScript" id="GDScript_rt53s"]
+script/source = "extends Area3D
+
+@onready var interact = $\"../Interaction/gamepcinter3\"
+@onready var player = $\"../CharacterBody3D\"
+@onready var gamepc = $\"../gamemeta\"
+
+var entered = false
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(_delta: float) -> void:
+	if entered:
+		if Input.is_action_just_pressed(\"interact\"):
+			gamepc.show()
+			player.set_meta(\"ingame\", true)
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			interact.hide()
+
+
+func _on_body_entered(body) -> void:
+	if body.is_in_group(\"Player\"):
+		entered = true
+		interact.show()
+
+func _on_body_exited(body) -> void:
+	if body.is_in_group(\"Player\"):
+		entered = false
+		interact.hide()
+"
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_xl61e")
@@ -182,6 +218,13 @@ mesh = SubResource("SphereMesh_457mv")
 skeleton = NodePath("../gamepcinter")
 surface_material_override/0 = SubResource("StandardMaterial3D_457mv")
 
+[node name="gamepcinter3" type="MeshInstance3D" parent="Interaction"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -9.63231, 1.78626, -14.9605)
+visible = false
+mesh = SubResource("SphereMesh_457mv")
+skeleton = NodePath("../gamepcinter")
+surface_material_override/0 = SubResource("StandardMaterial3D_457mv")
+
 [node name="gamewiretrig2" type="Area3D" parent="."]
 transform = Transform3D(3.23637, 0, 0, 0, 1, 0, 0, 0, 2.23466, -4.44843, 0.464231, -13.8233)
 script = SubResource("GDScript_457mv")
@@ -202,7 +245,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3764, 1.5218, -15.3703)
 mesh = ExtResource("18_4amiu")
 surface_material_override/0 = SubResource("StandardMaterial3D_w0i17")
 
+[node name="gamewiretrig3" type="Area3D" parent="."]
+transform = Transform3D(2.33971, 0, 0, 0, 0.452806, 0, 0, 0, 2.08587, -10.0697, 0.423784, -13.7513)
+script = SubResource("GDScript_rt53s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="gamewiretrig3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.377809, -0.304416, -0.196001)
+shape = SubResource("BoxShape3D_ao358")
+
+[node name="gamemeta" parent="." instance=ExtResource("20_w0i17")]
+visible = false
+
 [connection signal="body_entered" from="gamepctrig" to="gamepctrig" method="_on_body_entered"]
 [connection signal="body_exited" from="gamepctrig" to="gamepctrig" method="_on_body_exited"]
 [connection signal="body_entered" from="gamewiretrig2" to="gamewiretrig2" method="_on_body_entered"]
 [connection signal="body_exited" from="gamewiretrig2" to="gamewiretrig2" method="_on_body_exited"]
+[connection signal="body_entered" from="gamewiretrig3" to="gamewiretrig3" method="_on_body_entered"]
+[connection signal="body_exited" from="gamewiretrig3" to="gamewiretrig3" method="_on_body_exited"]
