@@ -1,9 +1,90 @@
-[gd_scene format=3 uid="uid://dlfyt1dpgn7cg"]
+[gd_scene load_steps=8 format=3 uid="uid://dlfyt1dpgn7cg"]
 
-[node name="Browser" type="Control"]
-layout_mode = 3
+[ext_resource type="Script" uid="uid://bnwo0j2xq5ba" path="res://scripts/browser.gd" id="1_y4bje"]
+[ext_resource type="Texture2D" uid="uid://b3apnksrajddt" path="res://assets/arrow-u-right-top-bold.svg" id="2_ucnkt"]
+[ext_resource type="Script" uid="uid://cp4duhcs2s7fj" path="res://scripts/back_button.gd" id="3_6nu5i"]
+[ext_resource type="Texture2D" uid="uid://c3yvfn3i7e0cj" path="res://assets/arrow-right-bold-circle-outline.svg" id="4_1sr4f"]
+[ext_resource type="Texture2D" uid="uid://cifscnoyo0ijd" path="res://assets/cached.svg" id="5_rga6v"]
+[ext_resource type="Texture2D" uid="uid://ywlat6fxjq5r" path="res://assets/atlassian.svg" id="6_445cg"]
+[ext_resource type="Script" uid="uid://csv40skmhlalw" path="res://scripts/address_bar.gd" id="7_vttns"]
+
+[node name="Browser" type="Panel"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_y4bje")
+
+[node name="NavigationBar" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 4
+alignment = 1
+
+[node name="BackButton" type="Button" parent="NavigationBar"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+icon = ExtResource("2_ucnkt")
+script = ExtResource("3_6nu5i")
+metadata/backbutton_browser = false
+
+[node name="ForwardButton" type="Button" parent="NavigationBar"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+icon = ExtResource("4_1sr4f")
+
+[node name="RefreshButton" type="Button" parent="NavigationBar"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+icon = ExtResource("5_rga6v")
+
+[node name="HomeButton" type="Button" parent="NavigationBar"]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+icon = ExtResource("6_445cg")
+
+[node name="AddressBar" type="LineEdit" parent="NavigationBar"]
+layout_mode = 2
+text = "search"
+placeholder_text = "Введите URL"
+expand_to_text_length = true
+clear_button_enabled = true
+script = ExtResource("7_vttns")
+
+[node name="PageLoader" type="HTTPRequest" parent="."]
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="TabContainer" type="TabContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+current_tab = 0
+
+[node name="Tab1content" type="RichTextLabel" parent="TabContainer"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Tab2content" type="RichTextLabel" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="TabBar" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Tab1" type="Button" parent="TabBar"]
+layout_mode = 2
+
+[node name="Tab2" type="Button" parent="TabBar"]
+layout_mode = 2
+
+[node name="AddTabButton" type="Button" parent="TabBar"]
+layout_mode = 2
