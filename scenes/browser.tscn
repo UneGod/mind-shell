@@ -2,23 +2,32 @@
 
 [ext_resource type="Script" uid="uid://bnwo0j2xq5ba" path="res://scripts/browser.gd" id="1_y4bje"]
 [ext_resource type="Texture2D" uid="uid://b3apnksrajddt" path="res://assets/arrow-u-right-top-bold.svg" id="2_ucnkt"]
-[ext_resource type="Script" uid="uid://cp4duhcs2s7fj" path="res://scripts/back_button.gd" id="3_6nu5i"]
 [ext_resource type="Texture2D" uid="uid://c3yvfn3i7e0cj" path="res://assets/arrow-right-bold-circle-outline.svg" id="4_1sr4f"]
 [ext_resource type="Texture2D" uid="uid://cifscnoyo0ijd" path="res://assets/cached.svg" id="5_rga6v"]
 [ext_resource type="Texture2D" uid="uid://ywlat6fxjq5r" path="res://assets/atlassian.svg" id="6_445cg"]
-[ext_resource type="Script" uid="uid://csv40skmhlalw" path="res://scripts/address_bar.gd" id="7_vttns"]
+
+[sub_resource type="GDScript" id="GDScript_lpngn"]
+
+[sub_resource type="GDScript" id="GDScript_opbo2"]
+script/source = "extends LineEdit
+"
 
 [node name="Browser" type="Panel"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 2.0
+offset_top = 1.0
+offset_right = -10.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_y4bje")
 
 [node name="NavigationBar" type="HBoxContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
+offset_left = 274.0
+offset_right = 1500.0
 offset_bottom = 40.0
 theme_override_constants/separation = 4
 alignment = 1
@@ -27,7 +36,7 @@ alignment = 1
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 icon = ExtResource("2_ucnkt")
-script = ExtResource("3_6nu5i")
+script = SubResource("GDScript_lpngn")
 metadata/backbutton_browser = false
 
 [node name="ForwardButton" type="Button" parent="NavigationBar"]
@@ -46,12 +55,13 @@ layout_mode = 2
 icon = ExtResource("6_445cg")
 
 [node name="AddressBar" type="LineEdit" parent="NavigationBar"]
+custom_minimum_size = Vector2(640, 30)
 layout_mode = 2
-text = "search"
 placeholder_text = "Введите URL"
+alignment = 1
 expand_to_text_length = true
 clear_button_enabled = true
-script = ExtResource("7_vttns")
+script = SubResource("GDScript_opbo2")
 
 [node name="PageLoader" type="HTTPRequest" parent="."]
 
@@ -62,8 +72,11 @@ offset_bottom = 27.0
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 1281.0
+offset_top = -2.0
+offset_right = 1598.0
+offset_bottom = 38.0
+rotation = 0.00349066
 current_tab = 0
 
 [node name="Tab1content" type="RichTextLabel" parent="TabContainer"]
