@@ -1,0 +1,81 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfnotn8jm2e7f"]
+
+[sub_resource type="GDScript" id="GDScript_1rctn"]
+script/source = "extends Control
+
+@onready var flag1 = $TextEdit
+@onready var flag2 = $TextEdit2
+@onready var flag3 = $TextEdit3
+@onready var status = $Label
+@onready var gamepc = $\".\"
+@onready var player = $\"../CharacterBody3D\"
+
+
+
+func _on_button_pressed() -> void:
+	if flag1.text == \"mshellctf{1s_Th1s_4_Brows3r_fl4g}\" and flag2.text == \"mshellctf{1sTh1sAFl4g0_o}\" and flag3.text == \"mshellctf{Th1s_is_a_gam3pc_fl4g}\":
+		status.text = \"Game completed!\"
+
+
+func _on_button_2_pressed() -> void:
+	gamepc.hide()
+	player.set_meta(\"ingame\", false)
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+"
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_1rctn")
+
+[node name="TextEdit" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 742.0
+offset_top = 382.0
+offset_right = 1099.0
+offset_bottom = 408.0
+
+[node name="TextEdit2" type="TextEdit" parent="."]
+offset_left = 743.0
+offset_top = 446.0
+offset_right = 1100.0
+offset_bottom = 472.0
+
+[node name="TextEdit3" type="TextEdit" parent="."]
+offset_left = 747.0
+offset_top = 526.0
+offset_right = 1104.0
+offset_bottom = 552.0
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 788.0
+offset_top = 610.0
+offset_right = 1066.0
+offset_bottom = 644.0
+text = "Finish!"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 851.0
+offset_top = 262.0
+offset_right = 1016.0
+offset_bottom = 322.0
+text = "Final game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button2" type="Button" parent="."]
+layout_mode = 0
+offset_left = 878.0
+offset_top = 675.0
+offset_right = 978.0
+offset_bottom = 706.0
+text = "Leave game"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

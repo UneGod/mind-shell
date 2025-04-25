@@ -21,6 +21,7 @@ func _on_button_pressed() -> void:
 	meta_text += "Date: 19.07.2030 \n"
 	meta_text += "Author: Nameless \n"
 	meta_text += "Date: 19.07.1996 \n"
+	meta_text += "mshellctf{m3tadata_fl4g0_o}"
 	
 	$HBoxContainer/VBoxContainer2/Label.text = meta_text
 

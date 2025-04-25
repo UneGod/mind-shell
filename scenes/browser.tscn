@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://dlfyt1dpgn7cg"]
+[gd_scene load_steps=10 format=3 uid="uid://dlfyt1dpgn7cg"]
 
 [ext_resource type="Script" uid="uid://bnwo0j2xq5ba" path="res://scripts/browser.gd" id="1_y4bje"]
 [ext_resource type="Texture2D" uid="uid://b3apnksrajddt" path="res://assets/arrow-u-right-top-bold.svg" id="2_ucnkt"]
 [ext_resource type="Texture2D" uid="uid://c3yvfn3i7e0cj" path="res://assets/arrow-right-bold-circle-outline.svg" id="4_1sr4f"]
 [ext_resource type="Texture2D" uid="uid://cifscnoyo0ijd" path="res://assets/cached.svg" id="5_rga6v"]
 [ext_resource type="Texture2D" uid="uid://ywlat6fxjq5r" path="res://assets/atlassian.svg" id="6_445cg"]
+[ext_resource type="Texture2D" uid="uid://cqkdgrbacniwh" path="res://assets/Pasted image.png" id="6_opbo2"]
+[ext_resource type="Texture2D" uid="uid://bpu42rvlxvbfp" path="res://assets/flag.png" id="7_ucnkt"]
 
 [sub_resource type="GDScript" id="GDScript_lpngn"]
 
@@ -63,8 +65,6 @@ expand_to_text_length = true
 clear_button_enabled = true
 script = SubResource("GDScript_opbo2")
 
-[node name="PageLoader" type="HTTPRequest" parent="."]
-
 [node name="ProgressBar" type="ProgressBar" parent="."]
 layout_mode = 0
 offset_right = 4.0
@@ -72,32 +72,50 @@ offset_bottom = 27.0
 
 [node name="TabContainer" type="TabContainer" parent="."]
 layout_mode = 0
-offset_left = 1281.0
-offset_top = -2.0
-offset_right = 1598.0
-offset_bottom = 38.0
+offset_top = -6.0
+offset_right = 1920.0
+offset_bottom = 1105.0
 rotation = 0.00349066
 current_tab = 0
 
 [node name="Tab1content" type="RichTextLabel" parent="TabContainer"]
+custom_minimum_size = Vector2(1800, 1080)
 layout_mode = 2
 metadata/_tab_index = 0
+
+[node name="TextureRect" type="TextureRect" parent="TabContainer/Tab1content"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_opbo2")
 
 [node name="Tab2content" type="RichTextLabel" parent="TabContainer"]
 visible = false
 layout_mode = 2
 metadata/_tab_index = 1
 
-[node name="TabBar" type="HBoxContainer" parent="."]
+[node name="TextureRect" type="TextureRect" parent="TabContainer/Tab2content"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+texture = ExtResource("7_ucnkt")
 
-[node name="Tab1" type="Button" parent="TabBar"]
-layout_mode = 2
-
-[node name="Tab2" type="Button" parent="TabBar"]
-layout_mode = 2
+[node name="TabBar" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 262.0
+offset_top = 2.0
+offset_right = 483.0
+offset_bottom = 42.0
 
 [node name="AddTabButton" type="Button" parent="TabBar"]
 layout_mode = 2
+
+[node name="leave" type="Button" parent="TabBar"]
+layout_mode = 2
+text = "Leave Browser"
+
+[connection signal="pressed" from="TabBar/leave" to="." method="_on_leave_pressed"]

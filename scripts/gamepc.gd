@@ -90,7 +90,7 @@ func _on_complete_pressed() -> void:
 				if cur_command.substr(4, cur_command.length()) == "192.168.1.2:443":
 					output.text = "Connection complete!" + "\n" + "Loading script..."
 					await get_tree().create_timer(2.0).timeout
-					output.text = "Script loaded successfully!" + "\n" + "Minigame completed"
+					output.text = "Script loaded successfully!" + "\n" + "Minigame completed" + "\n" + "Your flag is: mshellctf{Th1s_is_a_gam3pc_fl4g}"
 				else:
 					output.text = "Connection lost..."
 			else:
@@ -98,11 +98,13 @@ func _on_complete_pressed() -> void:
 		elif cur_command == "whoami":
 			output.text = "Nameless"
 		elif cur_command == "cat .passwd":
-			output.text = "pass{!sTh1sAFl4g0_o}"
+			output.text = "mshellctf{1sTh1sAFl4g0_o}"
 		code.text = ""
 	else:
 		if cur_command == "pass{hello10}":
 			loged = true
+		else:
+			output.text = "Incorrect password!"
 
 
 func _on_complete_2_pressed() -> void:
