@@ -63,7 +63,6 @@ func _on_button_pressed() -> void:
 			else:
 				k += 1
 				await get_tree().create_timer(2.0).timeout
-				var packet = generate_random_string(16)
 				var root = packet_list.create_item()
 				var time = Time.get_time_string_from_system()
 				var pr = get_random_protocol()

@@ -6,7 +6,6 @@ var history = []
 
 @onready var tab_container = $TabContainer
 @onready var address_bar = $NavigationBar/AddressBar
-@onready var page_loader = $PageLoader
 @onready var progress_bar = $ProgressBar
 
 func _ready():
@@ -20,7 +19,6 @@ func setup_buttons():
 	$NavigationBar/HomeButton.pressed.connect(_on_home_button_pressed)
 	$TabBar/AddTabButton.pressed.connect(_on_add_tab_button_pressed)
 	address_bar.text_submitted.connect(_on_address_bar_text_submitted)
-	tab_container
 
 func add_new_tab(url: String):
 	var new_tab = {
@@ -52,7 +50,7 @@ func update_tabs_ui():
 	
 	$TabBar.move_child($TabBar/AddTabButton, tabs.size())
 
-func _on_page_loader_request_completed(result, response_code, headers, body):
+func _on_page_loader_request_completed(_result, response_code, _headers, body):
 	progress_bar.visible = false
 	if response_code == 200:
 		var html = body.get_string_from_utf8()

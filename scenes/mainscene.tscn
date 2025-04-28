@@ -70,6 +70,8 @@ script/source = "extends Area3D
 @onready var interact = $\"../Interaction/gamepcinter2\"
 @onready var player = $\"../CharacterBody3D\"
 @onready var gamepc = $\"../Gamewireshark\"
+@onready var task = $\"../task\"
+@onready var gamepctrig = $\"../gamepctrig\"
 
 var entered = false
 
@@ -246,6 +248,7 @@ mesh = ExtResource("5_jifap")
 [node name="CharacterBody3D" parent="." groups=["Persist", "Player"] instance=ExtResource("6_nshjd")]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -4.37265, 0.853797, -18.5449)
 metadata/ingame = false
+metadata/cur_task = 1
 
 [node name="FloorRotated" type="MeshInstance3D" parent="."]
 mesh = ExtResource("2_hpy2g")
@@ -258,6 +261,7 @@ shape = SubResource("ConcavePolygonShape3D_ao358")
 [node name="gamepctrig" type="Area3D" parent="."]
 transform = Transform3D(1.70913, 0, 0, 0, 1, 0, 0, 0, 1.16709, -18.879, 0.294157, -30.1061)
 script = ExtResource("9_bw6rn")
+metadata/activatedBefore = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="gamepctrig"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.377809, -0.304416, -0.196001)
@@ -303,6 +307,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_457mv")
 [node name="gamewiretrig2" type="Area3D" parent="."]
 transform = Transform3D(3.23637, 0, 0, 0, 1, 0, 0, 0, 2.23466, -4.44843, 0.464231, -13.8233)
 script = SubResource("GDScript_457mv")
+metadata/activatedBefore = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="gamewiretrig2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.377809, -0.304416, -0.196001)
@@ -377,6 +382,19 @@ shape = SubResource("BoxShape3D_ao358")
 
 [node name="final" parent="." instance=ExtResource("22_60k3h")]
 visible = false
+
+[node name="task" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -264.0
+offset_bottom = 90.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 24
+text = "Current task:
+Find PC with terminal"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="gamepctrig" to="gamepctrig" method="_on_body_entered"]
 [connection signal="body_exited" from="gamepctrig" to="gamepctrig" method="_on_body_exited"]

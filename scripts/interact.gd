@@ -3,6 +3,7 @@ extends Area3D
 @onready var interact = $"../Interaction/gamepcinter"
 @onready var player = $"../CharacterBody3D"
 @onready var gamepc = $"../Gamepc"
+@onready var task = $"../task"
 
 var entered = false
 
