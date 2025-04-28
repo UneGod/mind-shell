@@ -5,6 +5,7 @@ extends Control
 @onready var player = $"../CharacterBody3D"
 @onready var game = $"."
 @onready var inter = $"../Interaction/gamepcinter2"
+@onready var task = $"../task"
 
 var started = false
 var clickedbefore = false
@@ -30,6 +31,8 @@ func generate_random_string(length: int) -> String:
 	return result
 
 func _on_button_pressed() -> void:
+	if task.get_meta("tasknumb") == 3:
+		task.set_meta("tasknumb", 4)
 	started = true
 	while true:
 		if started:
@@ -68,9 +71,9 @@ func _on_button_pressed() -> void:
 				var pr = get_random_protocol()
 				root.set_text(0, str(k))
 				root.set_text(1, time)
-				root.set_text(2, "192.168.1.2")  # Заглушка (реальный IP из парсинга)
-				root.set_text(3, generate_random_ip())      # Заглушка
-				root.set_text(4, pr)           # Определяем по данным пакета
+				root.set_text(2, "192.168.1.2") 
+				root.set_text(3, generate_random_ip())
+				root.set_text(4, pr)
 				root.set_text(5, "16")
 				
 				var root1 = packet_details.create_item()
@@ -116,6 +119,7 @@ func generate_random_mac() -> String:
 
 
 func _on_button_3_pressed() -> void:
+	started = false
 	game.hide()
 	inter.show()
 	player.set_meta("ingame", false)

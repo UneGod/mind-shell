@@ -16,6 +16,8 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	if entered:
 		if Input.is_action_just_pressed("interact"):
+			if task.get_meta("tasknumb") == 1:
+				task.set_meta("tasknumb", 2)
 			gamepc.show()
 			player.set_meta("ingame", true)
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

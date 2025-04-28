@@ -7,6 +7,9 @@ var history = []
 @onready var tab_container = $TabContainer
 @onready var address_bar = $NavigationBar/AddressBar
 @onready var progress_bar = $ProgressBar
+@onready var gamepc = $"."
+@onready var inter = $"../Interaction/gamepcinter4"
+@onready var player = $"../CharacterBody3D"
 
 func _ready():
 	add_new_tab("https://google.com")
@@ -90,3 +93,10 @@ func _on_tab_selected(tab_index):
 
 func _on_address_bar_text_submitted(new_text):
 	load_page(new_text)
+
+
+func _on_leave_pressed() -> void:
+	gamepc.hide()
+	inter.show()
+	player.set_meta("ingame", false)
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
