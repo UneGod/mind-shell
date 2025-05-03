@@ -1,0 +1,82 @@
+[gd_scene load_steps=4 format=3 uid="uid://bgj4s4mn58aiq"]
+
+[ext_resource type="Texture2D" uid="uid://iftlce3nwav1" path="res://assets/saveload_idle.png" id="1_ble1a"]
+[ext_resource type="Texture2D" uid="uid://dyewp3ndifk4j" path="res://assets/gallerybutton_selecthover_blank.png" id="2_3wpgy"]
+
+[sub_resource type="GDScript" id="GDScript_3wpgy"]
+script/source = "extends Control
+
+func _on_button_pressed() -> void:
+	$\"../notes\".show()
+	
+
+
+
+func _on_button_2_pressed() -> void:
+	$\"../flags\".show()
+"
+
+[node name="book" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_3wpgy")
+
+[node name="main" type="Sprite2D" parent="."]
+position = Vector2(960, 541)
+texture = ExtResource("1_ble1a")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 542.0
+offset_top = 386.0
+offset_right = 775.0
+offset_bottom = 442.0
+icon = ExtResource("2_3wpgy")
+
+[node name="Label" type="Label" parent="Button"]
+layout_mode = 0
+offset_right = 231.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 32
+text = "Записи"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 1137.0
+offset_top = 386.0
+offset_right = 1370.0
+offset_bottom = 442.0
+icon = ExtResource("2_3wpgy")
+
+[node name="Label" type="Label" parent="Button2"]
+layout_mode = 0
+offset_right = 231.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 32
+text = "Флаги"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button3" type="Button" parent="."]
+offset_left = 555.0
+offset_top = 699.0
+offset_right = 788.0
+offset_bottom = 755.0
+icon = ExtResource("2_3wpgy")
+
+[node name="Label" type="Label" parent="Button3"]
+layout_mode = 0
+offset_right = 231.0
+offset_bottom = 53.0
+theme_override_font_sizes/font_size = 32
+text = "Информация"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

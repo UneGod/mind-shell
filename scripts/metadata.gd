@@ -4,16 +4,6 @@ extends Control
 @onready var inter = $"../Interaction/gamepcinter3"
 @onready var gamepc = $"."
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	pass
-
-
 func _on_button_pressed() -> void:
 	var meta_text = "Метаданные:\n"
 	meta_text += "Camera: Jsdg936t8bk3 2589g \n"

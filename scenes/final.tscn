@@ -13,7 +13,7 @@ script/source = "extends Control
 
 
 func _on_button_pressed() -> void:
-	if flag1.text == \"mshellctf{1s_Th1s_4_Brows3r_fl4g}\" and flag2.text == \"mshellctf{1sTh1sAFl4g0_o}\" and flag3.text == \"mshellctf{Th1s_is_a_gam3pc_fl4g}\":
+	if flag1.text == \"mshellctf{1s_Th1s_4_Brows3r_fl4g}\" and flag2.text == \"mshellctf{1sTh1sAFl4g0_o}\" and flag3.text == \"mshellctf{Th1s_is_a_gam3pc_fl4g}\" and $TextEdit4.text == \"mshellctf{m3tadata_fl4g0_o}\":
 		status.text = \"Game completed!\"
 
 
@@ -40,23 +40,25 @@ offset_right = 1099.0
 offset_bottom = 408.0
 
 [node name="TextEdit2" type="TextEdit" parent="."]
+layout_mode = 0
 offset_left = 743.0
 offset_top = 446.0
 offset_right = 1100.0
 offset_bottom = 472.0
 
 [node name="TextEdit3" type="TextEdit" parent="."]
-offset_left = 747.0
-offset_top = 526.0
-offset_right = 1104.0
-offset_bottom = 552.0
+layout_mode = 0
+offset_left = 741.0
+offset_top = 502.0
+offset_right = 1098.0
+offset_bottom = 528.0
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = 788.0
-offset_top = 610.0
-offset_right = 1066.0
-offset_bottom = 644.0
+offset_left = 791.0
+offset_top = 625.0
+offset_right = 1069.0
+offset_bottom = 659.0
 text = "Finish!"
 
 [node name="Label" type="Label" parent="."]
@@ -76,6 +78,41 @@ offset_top = 675.0
 offset_right = 978.0
 offset_bottom = 706.0
 text = "Leave game"
+
+[node name="TextEdit4" type="TextEdit" parent="."]
+offset_left = 743.0
+offset_top = 561.0
+offset_right = 1100.0
+offset_bottom = 587.0
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 629.0
+offset_top = 384.0
+offset_right = 716.0
+offset_bottom = 407.0
+text = "Browser flag"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 626.0
+offset_top = 449.0
+offset_right = 734.0
+offset_bottom = 472.0
+text = "Password flag"
+
+[node name="Label4" type="Label" parent="."]
+offset_left = 630.0
+offset_top = 505.0
+offset_right = 738.0
+offset_bottom = 528.0
+text = "Game pc flag"
+
+[node name="Label5" type="Label" parent="."]
+offset_left = 632.0
+offset_top = 562.0
+offset_right = 740.0
+offset_bottom = 585.0
+text = "metadata flag"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Button2" to="." method="_on_button_2_pressed"]

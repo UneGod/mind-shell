@@ -91,6 +91,8 @@ func _on_complete_pressed() -> void:
 					output.text = "Connection complete!" + "\n" + "Loading script..."
 					await get_tree().create_timer(2.0).timeout
 					output.text = "Script loaded successfully!" + "\n" + "Minigame completed" + "\n" + "Your flag is: mshellctf{Th1s_is_a_gam3pc_fl4g}"
+					if $"../task".get_meta("tasknumb") == 5:
+						$"../task".set_meta("tasknumb", 6)
 				else:
 					output.text = "Connection lost..."
 			else:
@@ -99,9 +101,13 @@ func _on_complete_pressed() -> void:
 			output.text = "Nameless"
 		elif cur_command == "cat .passwd":
 			output.text = "mshellctf{1sTh1sAFl4g0_o}"
+			if $"../task".get_meta("tasknumb") == 8:
+				$"../task".set_meta("tasknumb", 9)
 		code.text = ""
 	else:
 		if cur_command == "pass{hello10}":
+			if $"../task".get_meta("tasknumb") == 4:
+				$"../task".set_meta("tasknumb", 5)
 			loged = true
 		else:
 			output.text = "Incorrect password!"

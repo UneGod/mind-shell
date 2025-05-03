@@ -7,17 +7,13 @@ extends Area3D
 
 var entered = false
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if entered:
 		if Input.is_action_just_pressed("interact"):
 			if task.get_meta("tasknumb") == 1:
 				task.set_meta("tasknumb", 2)
+			if task.get_meta("tasknumb") == 7:
+				$"../task".set_meta("tasknumb", 8)
 			gamepc.show()
 			player.set_meta("ingame", true)
 			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

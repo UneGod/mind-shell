@@ -13,7 +13,6 @@ var k = -1
 
 func _ready():
 	
-	# Задаём названия колонок
 	packet_list.set_column_title(0, "№")
 	packet_list.set_column_title(1, "Time")
 	packet_list.set_column_title(2, "Source")
@@ -24,7 +23,7 @@ func _ready():
 func generate_random_string(length: int) -> String:
 	var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 	var random = RandomNumberGenerator.new()
-	random.randomize()  # Важно: инициализация генератора
+	random.randomize()
 	var result = ""
 	for i in range(length):
 		result += chars[random.randi() % chars.length()]
@@ -46,14 +45,13 @@ func _on_button_pressed() -> void:
 				var pr = get_random_protocol()
 				root.set_text(0, str(k))
 				root.set_text(1, time)
-				root.set_text(2, sourceip)  # Заглушка (реальный IP из парсинга)
-				root.set_text(3, generate_random_ip())      # Заглушка
-				root.set_text(4, pr)           # Определяем по данным пакета
+				root.set_text(2, sourceip)  
+				root.set_text(3, generate_random_ip())
+				root.set_text(4, pr) 
 				root.set_text(5, "16")
 				
 				var root1 = packet_details.create_item()
 				
-				# Ethernet заголовок (пример)
 				var eth = packet_details.create_item(root1)
 				eth.set_text(0, "Ethernet")
 				eth.set_text(1, "Src MAC: " + generate_random_mac())
@@ -78,7 +76,7 @@ func _on_button_pressed() -> void:
 				
 				var root1 = packet_details.create_item()
 				
-				# Ethernet заголовок (пример)
+				
 				var eth = packet_details.create_item(root1)
 				eth.set_text(0, "Ethernet")
 				eth.set_text(1, "Src MAC: " + generate_random_mac())

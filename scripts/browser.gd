@@ -94,6 +94,9 @@ func _on_tab_selected(tab_index):
 func _on_address_bar_text_submitted(new_text):
 	load_page(new_text)
 
+func _process(_delta: float) -> void:
+	if $TabContainer/Tab2content.is_visible_in_tree() and $"../task".get_meta("tasknumb") == 10:
+		$"../task".set_meta("tasknumb", 11)
 
 func _on_leave_pressed() -> void:
 	gamepc.hide()
