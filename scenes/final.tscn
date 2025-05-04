@@ -80,6 +80,7 @@ offset_bottom = 706.0
 text = "Leave game"
 
 [node name="TextEdit4" type="TextEdit" parent="."]
+layout_mode = 0
 offset_left = 743.0
 offset_top = 561.0
 offset_right = 1100.0
@@ -94,6 +95,7 @@ offset_bottom = 407.0
 text = "Browser flag"
 
 [node name="Label3" type="Label" parent="."]
+layout_mode = 0
 offset_left = 626.0
 offset_top = 449.0
 offset_right = 734.0
@@ -101,6 +103,7 @@ offset_bottom = 472.0
 text = "Password flag"
 
 [node name="Label4" type="Label" parent="."]
+layout_mode = 0
 offset_left = 630.0
 offset_top = 505.0
 offset_right = 738.0
@@ -108,6 +111,7 @@ offset_bottom = 528.0
 text = "Game pc flag"
 
 [node name="Label5" type="Label" parent="."]
+layout_mode = 0
 offset_left = 632.0
 offset_top = 562.0
 offset_right = 740.0
