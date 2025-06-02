@@ -87,7 +87,7 @@ func _on_complete_pressed() -> void:
 				output.text += "ip is not correct!"
 		elif "ssh " in cur_command:
 			if cur_dir == "programming":
-				if cur_command.substr(4, cur_command.length()) == "192.168.1.2:443":
+				if cur_command.substr(4, cur_command.length()) == "nameless@192.168.1.2":
 					output.text = "Connection complete!" + "\n" + "Loading script..."
 					await get_tree().create_timer(2.0).timeout
 					output.text = "Script loaded successfully!" + "\n" + "Minigame completed" + "\n" + "Your flag is: mshellctf{Th1s_is_a_gam3pc_fl4g}"

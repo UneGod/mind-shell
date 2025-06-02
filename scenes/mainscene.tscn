@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://psegjdhsdq1u"]
+[gd_scene load_steps=60 format=3 uid="uid://psegjdhsdq1u"]
 
 [ext_resource type="ArrayMesh" uid="uid://h3b2gj3utujy" path="res://models/Walls_ext_rotated.obj" id="1_nshjd"]
 [ext_resource type="Script" uid="uid://b7p7rwx81p4xv" path="res://scripts/mainscene.gd" id="1_xl61e"]
@@ -28,10 +28,10 @@
 [ext_resource type="PackedScene" uid="uid://bgj4s4mn58aiq" path="res://scenes/book.tscn" id="25_6ravm"]
 [ext_resource type="PackedScene" uid="uid://bkau5vnuaj67w" path="res://scenes/notes.tscn" id="26_wkmvq"]
 [ext_resource type="PackedScene" uid="uid://dx36tslp8cv2s" path="res://scenes/flags.tscn" id="27_jj3vu"]
-[ext_resource type="ArrayMesh" uid="uid://ilwnxp14ur4y" path="res://models/clothes_cook.obj" id="29_1f2rr"]
 [ext_resource type="Texture2D" uid="uid://c5ysk5fi600m7" path="res://models/textures/CHAIR1.png" id="30_1f2rr"]
 [ext_resource type="ArrayMesh" uid="uid://b1i7e5kpbxy4q" path="res://models/chair.obj" id="30_fcesb"]
 [ext_resource type="ArrayMesh" uid="uid://cmeoceuhb5myi" path="res://models/pot_cactus.obj" id="31_i3302"]
+[ext_resource type="PackedScene" uid="uid://17psgrw1uix2" path="res://scenes/diff.tscn" id="32_1f2rr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nshjd"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -243,27 +243,27 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	if get_meta(\"tasknumb\") == 2:
-		text = \"Current task:\\nFind tablet with wireshark app\"
+		text = \"Текущее задание:\\nНайти на стене планшет с программой wireshark\"
 	elif get_meta(\"tasknumb\") == 3:
-		text = \"Current task:\\nStart catching\"
+		text = \"Текущее задание:\\nНачать захват пакетов\"
 	elif get_meta(\"tasknumb\") == 4:
-		text = \"Current task:\\nFind the right packet\\nGo to PC with terminal\\nEnter passcode\"
+		text = \"Текущее задание:\\nНайти нужный пакет\\nПодойти к компьютеру\\nВвести пароль\"
 	elif get_meta(\"tasknumb\") == 5:
-		text = \"Current task:\\nComplete first minigame\\nGet a flag type:\\nmshellctf{flag}\"
+		text = \"Текущее задание:\\nНайти нужного пользователя\\nЗагрузить скрипт по ssh\\nПолучить флаг, который имеет вид:\\nmshellctf{flag}\"
 	elif get_meta(\"tasknumb\") == 6:
-		text = \"Current task:\\nFind the metadata minigame\"
+		text = \"Текущее задание:\\nВернуться к планшету с картинкой\"
 	elif get_meta(\"tasknumb\") == 7:
-		text = \"Current task:\\nGo to PC with terminal\"
+		text = \"Текущее задание:\\nВернуться к компьютеру с терминалом\"
 	elif get_meta(\"tasknumb\") == 8:
-		text = \"Current task:\\nFind the flag in passwords\"
+		text = \"Текущее задание:\\nНайти флаг в паролях\"
 	elif get_meta(\"tasknumb\") == 9:
-		text = \"Current task:\\nFing PC with browser\"
+		text = \"Текущее задание:\\nНайти компьютер с открытым браузером\"
 	elif get_meta(\"tasknumb\") == 10:
-		text = \"Current task:\\nFind 4 flag\"
+		text = \"Текущее задание:\\nПолучить 4 флаг\"
 	elif get_meta(\"tasknumb\") == 11:
-		text = \"Current task:\\nGo to exit\"
+		text = \"Текущее задание:\\nПодойти к выходу\"
 	elif get_meta(\"tasknumb\") == 12:
-		text = \"Current task:\\nEnter 4 flags to finish game\"
+		text = \"Текущее задание:\\nВвести 4 флага для прохождения игры\"
 "
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jtb7t"]
@@ -277,9 +277,13 @@ albedo_color = Color(0.337768, 0.613656, 0, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_jj3vu"]
 material = SubResource("StandardMaterial3D_jj3vu")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_1f2rr"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fcesb"]
 albedo_texture = ExtResource("30_1f2rr")
 uv1_triplanar = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_3ou18"]
 
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_xl61e")
@@ -471,8 +475,8 @@ offset_left = -264.0
 offset_bottom = 90.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 24
-text = "Current task:
-Find PC with terminal"
+text = "Текущее задание:
+Найти компьютер с терминалом"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = SubResource("GDScript_4o78i")
@@ -496,9 +500,11 @@ visible = false
 transform = Transform3D(0.181143, 0, 0, 0, 2.94586, 0, 0, 0, 1, -0.0941626, 0.536456, -18)
 mesh = SubResource("BoxMesh_jj3vu")
 
-[node name="ClothesCook" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.32255, 1.54924, -20.2199)
-mesh = ExtResource("29_1f2rr")
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0634148, 0, 0)
+shape = SubResource("BoxShape3D_1f2rr")
 
 [node name="Chair" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.599345, 0, 0.800491, 0, 1, 0, -0.800491, 0, 0.599345, -18.8415, 0.480202, -30.2839)
@@ -508,6 +514,13 @@ mesh = ExtResource("30_fcesb")
 [node name="PotCactus" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5006, 0.850238, -31.1151)
 mesh = ExtResource("31_i3302")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+position = Vector2(960, 600)
+scale = Vector2(8.40318, 7.78123)
+mesh = SubResource("SphereMesh_3ou18")
+
+[node name="Diff" parent="." instance=ExtResource("32_1f2rr")]
 
 [connection signal="body_entered" from="gamepctrig" to="gamepctrig" method="_on_body_entered"]
 [connection signal="body_exited" from="gamepctrig" to="gamepctrig" method="_on_body_exited"]

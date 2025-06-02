@@ -5,7 +5,7 @@ extends Node3D
 @onready var task = $task
 
 func _ready() -> void:
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	pass
 
 func _process(_delta) -> void:
 	if Input.is_action_just_pressed("leavegame"):
