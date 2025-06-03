@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://psegjdhsdq1u"]
+[gd_scene load_steps=80 format=3 uid="uid://psegjdhsdq1u"]
 
 [ext_resource type="ArrayMesh" uid="uid://h3b2gj3utujy" path="res://models/Walls_ext_rotated.obj" id="1_nshjd"]
 [ext_resource type="Script" uid="uid://b7p7rwx81p4xv" path="res://scripts/mainscene.gd" id="1_xl61e"]
@@ -30,8 +30,19 @@
 [ext_resource type="PackedScene" uid="uid://dx36tslp8cv2s" path="res://scenes/flags.tscn" id="27_jj3vu"]
 [ext_resource type="Texture2D" uid="uid://c5ysk5fi600m7" path="res://models/textures/CHAIR1.png" id="30_1f2rr"]
 [ext_resource type="ArrayMesh" uid="uid://b1i7e5kpbxy4q" path="res://models/chair.obj" id="30_fcesb"]
-[ext_resource type="ArrayMesh" uid="uid://cmeoceuhb5myi" path="res://models/pot_cactus.obj" id="31_i3302"]
 [ext_resource type="PackedScene" uid="uid://17psgrw1uix2" path="res://scenes/diff.tscn" id="32_1f2rr"]
+[ext_resource type="Texture2D" uid="uid://carcs4kw0tti3" path="res://models/textures/Closet_txture.png" id="33_i3302"]
+[ext_resource type="ArrayMesh" uid="uid://bdp6x1im3xq2r" path="res://models/Closet_rotated.obj" id="34_jtb7t"]
+[ext_resource type="ArrayMesh" uid="uid://dcp0rdfk0hlh2" path="res://models/DoorFrame.obj" id="35_jtb7t"]
+[ext_resource type="Texture2D" uid="uid://cvtb5r6nvg7i5" path="res://models/textures/framestxture.png" id="35_pj0ys"]
+[ext_resource type="Texture2D" uid="uid://dfm2akdaeiu4v" path="res://models/textures/ClothHooktexture2.png" id="36_1jyyk"]
+[ext_resource type="ArrayMesh" uid="uid://dqyvg0q0xjihs" path="res://models/clothes_hook.obj" id="37_1jyyk"]
+[ext_resource type="Texture2D" uid="uid://cshs5m01bc124" path="res://models/textures/monaliza3.png" id="38_rnjso"]
+[ext_resource type="ArrayMesh" uid="uid://dqh070qhywt80" path="res://models/PaintingShort.obj" id="39_v27vk"]
+[ext_resource type="Texture2D" uid="uid://cqpno46xfvt7i" path="res://models/textures/malevi4square.png" id="40_v27vk"]
+[ext_resource type="Texture2D" uid="uid://diry48yuwxo03" path="res://models/textures/Painting2.png" id="41_3ocru"]
+[ext_resource type="ArrayMesh" uid="uid://d1c4djoi1fggk" path="res://models/PaintingLong.obj" id="42_pklhh"]
+[ext_resource type="Texture2D" uid="uid://1b48u0hpnxw5" path="res://models/textures/Painting3.png" id="43_pklhh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nshjd"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -285,6 +296,41 @@ uv1_triplanar = true
 
 [sub_resource type="SphereMesh" id="SphereMesh_3ou18"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pj0ys"]
+albedo_texture = ExtResource("33_i3302")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i3302"]
+albedo_texture = ExtResource("33_i3302")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1jyyk"]
+albedo_texture = ExtResource("33_i3302")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fq3y7"]
+albedo_texture = ExtResource("35_pj0ys")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rnjso"]
+albedo_texture = ExtResource("36_1jyyk")
+rim_enabled = true
+rim_tint = 0.59
+uv1_triplanar = true
+uv1_triplanar_sharpness = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v28my"]
+albedo_texture = ExtResource("38_rnjso")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ocru"]
+albedo_texture = ExtResource("40_v27vk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pn25v"]
+albedo_texture = ExtResource("41_3ocru")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lbk5b"]
+albedo_texture = ExtResource("43_pklhh")
+
 [node name="Node3D" type="Node3D"]
 script = ExtResource("1_xl61e")
 
@@ -511,16 +557,56 @@ transform = Transform3D(0.599345, 0, 0.800491, 0, 1, 0, -0.800491, 0, 0.599345, 
 material_override = SubResource("StandardMaterial3D_fcesb")
 mesh = ExtResource("30_fcesb")
 
-[node name="PotCactus" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.5006, 0.850238, -31.1151)
-mesh = ExtResource("31_i3302")
-
 [node name="MeshInstance2D" type="MeshInstance2D" parent="."]
 position = Vector2(960, 600)
 scale = Vector2(8.40318, 7.78123)
 mesh = SubResource("SphereMesh_3ou18")
 
 [node name="Diff" parent="." instance=ExtResource("32_1f2rr")]
+
+[node name="ClosetRotated" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.998404, 0, 0.0564837, 0, 1, 0, -0.0564837, 0, -0.998404, -16.2881, 0, -31.8003)
+material_override = SubResource("StandardMaterial3D_pj0ys")
+mesh = ExtResource("34_jtb7t")
+
+[node name="ClosetRotated2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.218825, 0.00920026, 0.975721, -0.00315733, 0.999944, -0.0101367, -0.975759, -0.00529883, -0.218784, -16.047, 0, -1.41535)
+material_override = SubResource("StandardMaterial3D_i3302")
+mesh = ExtResource("34_jtb7t")
+
+[node name="ClosetRotated3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.0988856, 0, -0.995099, 0, 1, 0, 0.995099, 0, -0.0988856, -1.83488, 0.0595853, -19.2502)
+material_override = SubResource("StandardMaterial3D_1jyyk")
+mesh = ExtResource("34_jtb7t")
+
+[node name="DoorFrame" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_fq3y7")
+mesh = ExtResource("35_jtb7t")
+
+[node name="ClothesHook2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.03481, -0.0297078, 2.54081)
+material_override = SubResource("StandardMaterial3D_rnjso")
+mesh = ExtResource("37_1jyyk")
+
+[node name="PaintingShort" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.19866, 0, 0, 0, -9.61065e-08, -2.19866, 0, 2.19866, -9.61065e-08, -19.6671, 1.76755, -28.5846)
+material_override = SubResource("StandardMaterial3D_v28my")
+mesh = ExtResource("39_v27vk")
+
+[node name="PaintingShort2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -5.26249, 1.3872, -0.204056)
+material_override = SubResource("StandardMaterial3D_3ocru")
+mesh = ExtResource("39_v27vk")
+
+[node name="PaintingLong" type="MeshInstance3D" parent="."]
+transform = Transform3D(2.30681, 0, 0, 0, 2.30681, 0, 0, 0, 2.30681, -19.806, 1.66864, -3.20235)
+material_override = SubResource("StandardMaterial3D_pn25v")
+mesh = ExtResource("42_pklhh")
+
+[node name="PaintingLong2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-6.80313e-08, 0, 1.55637, 0, 1.55637, 0, -1.55637, 0, -6.80313e-08, -6.86771, 1.45892, -15.5999)
+material_override = SubResource("StandardMaterial3D_lbk5b")
+mesh = ExtResource("42_pklhh")
 
 [connection signal="body_entered" from="gamepctrig" to="gamepctrig" method="_on_body_entered"]
 [connection signal="body_exited" from="gamepctrig" to="gamepctrig" method="_on_body_exited"]
