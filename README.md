@@ -11,4 +11,4 @@
 ✅ ***created walls and floor collision***  
 ❌ ***prologue***  
 ❌ ***better design for main menu***  
-❌ ***ui for some tasks that need completion on pc***  
+✅ ***ui for some tasks that need completion on pc***  
